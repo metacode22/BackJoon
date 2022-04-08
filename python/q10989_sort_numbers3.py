@@ -1,6 +1,5 @@
 # 계수 정렬, Counting Sort
 
-from array import array
 import sys
 
 t = int(sys.stdin.readline())
@@ -25,3 +24,19 @@ for j in range(10001):
     if count_arr[j] != 0:
         for k in range(count_arr[j]):
             print(j)
+
+# import sys
+# input = sys.stdin.readline
+
+# count_list = [0] * 10001
+# arr = []
+# t = int(input())
+
+# for _ in range(t):
+#     n = int(input())
+#     count_list[n] += 1
+
+# for idx, x in enumerate(count_list):
+#     if x != 0:
+#         for j in range(x):
+#             print(idx)

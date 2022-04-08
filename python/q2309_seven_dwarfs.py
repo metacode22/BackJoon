@@ -1,28 +1,29 @@
 import sys
+input = sys.stdin.readline
 
-arr = [int(sys.stdin.readline()) for _ in range(9)]
+arr = []
 
-tot = sum(arr)
+for _ in range(9):
+    n = int(input())
+    arr.append(n)
 
-for i in range(len(arr)):
+for i in range(0, len(arr)):
     for j in range(i + 1, len(arr)):
-        if tot - (arr[i] + arr[j]) == 100:
-# arr를 참조
-            # arr.remove(arr[i])
-            # arr.remove(arr[j - 1])
+        if sum(arr) - (arr[i] + arr[j]) == 100:
+            num1 = arr[i]
+            num2 = arr[j]
 
-# 변수로 값을 찾아 제거. remove() 안에서 arr를 따로 참조하지 않음.
-            num1, num2 = arr[i], arr[j]
             arr.remove(num1)
             arr.remove(num2)
-
-            arr.sort()
             break
 
-    if len(arr) < 9:
+    if len(arr) == 7:
         break
+
+for k in range(len(arr)):
+    for l in range(k + 1, len(arr)):
+        if arr[k] > arr[l]:
+            arr[k], arr[l] = arr[l], arr[k]
 
 for k in arr:
     print(k)
-
-# for문 모두 탈출이 필요
