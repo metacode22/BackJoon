@@ -1,27 +1,30 @@
+import sys
+sys.stdin = open('input.txt')
+input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
+
 n = int(input())
-
+board = [list(map(int,input().split())) for _ in range(n)]
+dp = [[-1]*n for _ in range(n)]
+move = [(0,1),(1,0),(0,-1),(-1,0)]
 ans = 0
-row = [0] * n
 
-def is_promising(x):
-    for i in range(n):
-        if row[x] == row[i] or abs(row[x] - row[i]) == abs(x - i):
-            return False
+def dfs(x,y):
+    if dp[x][y] == -1:
+        dp[x][y] = 0
+        
+        for a,b in move:
+            dx=x+a; dy=y+b
+            if n>dx>=0 and n>dy>=0 and board[dx][dy] > board[x][y]:
+                dp[x][y] = max(dp[x][y],dfs(dx,dy))
     
-    return True
+    return dp[x][y]+1
 
-def n_queens(x):
-    global ans
-    if x == n:
-        ans += 1
-        return
-
-    else:
-        for i in range(n):
-            # [x, i]에 퀸을 놓겠다.
-            row[x] = i
-            if is_promising(x):
-                n_queens(x+1)
-
-n_queens(0)
+for i in range(n):
+    for j in range(n):
+        ans = max(ans,dfs(i,j))
+            
 print(ans)
+
+for k in dp:
+    print(k)
