@@ -3,6 +3,6 @@ sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
 n = input().rstrip()
-a = sorted(n, reverse=True)
-b = int(''.join(a))
-print(b)
+
+a = ''.join(sorted(n, reverse=True))
+print(int(a))
