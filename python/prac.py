@@ -1,4 +1,7 @@
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+from typing import List
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stack = list()
+        
+        for 
